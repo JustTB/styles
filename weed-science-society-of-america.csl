@@ -15,11 +15,6 @@
     <updated>2012-09-14T21:22:32+00:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
-  <locale xml:lang="en">
-    <terms>
-      <term name="available at">available at</term>
-    </terms>
-  </locale>
   <macro name="container-contributors">
     <choose>
       <if type="chapter paper-conference" match="any">
