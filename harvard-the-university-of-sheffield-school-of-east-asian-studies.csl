@@ -55,7 +55,7 @@
   </macro>
   <macro name="access">
     <group>
-      <text value="available at" suffix=" "/>
+      <text term="available at" suffix=" "/>
       <text variable="URL" suffix=" "/>
       <date variable="accessed" prefix="[" suffix="].">
         <date-part name="day" suffix=" "/>

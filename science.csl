@@ -48,7 +48,7 @@
           </if>
           <else>
             <group prefix=" (" suffix=")">
-              <text value="available at "/>
+              <text term="available at"/>
               <text variable="URL"/>
             </group>
           </else>
