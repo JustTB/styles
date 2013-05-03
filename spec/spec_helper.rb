@@ -18,15 +18,47 @@ TITLES_FILTER = [
   # 'example title 2'
 ]
 
+# These styles are ignored when checking for valid citation-formats
+CITATION_FORMAT_FILTER = %w{
+  bibtex blank national-archives-of-australia
+}
+
 # These files are ignored when checking for extra files
 EXTRA_FILES_FILTER = [
   'CONTRIBUTING.md', 'Gemfile', 'Gemfile.lock', 'README.md',
-  'dependent', 'Rakefile', 'spec', 'spec_helper.rb', /_spec\.rb$/
+  'dependent', 'Rakefile', 'spec', 'spec_helper.rb', /_spec\.rb$/,
+  'renamed-styles.json'
 ]
 
 EXTRA_FILES = Dir[File.join(STYLE_ROOT, '**', '*')].reject do |file|
-  name = File.basename(file)  
+  name = File.basename(file)
   File.extname(file) == '.csl' || EXTRA_FILES_FILTER.any? { |f| f === name }
+end
+
+# Default license and rights text
+CSL::Schema.default_license = 'http://creativecommons.org/licenses/by-sa/3.0/'
+CSL::Schema.default_rights_string =
+  'This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License'
+
+
+# RSpec Error Formatter For Minimal Output
+require 'rspec/core/formatters/base_text_formatter'
+class ErrorFormatter < RSpec::Core::Formatters::BaseTextFormatter
+
+  def example_pending(example)
+    super(example)
+    output.print pending_color('*')
+  end
+
+  def example_failed(example)
+    super(example)
+    output.print failure_color('F')
+  end
+
+  def start_dump
+    super()
+    output.puts
+  end
 end
 
 def load_style(path)
@@ -53,7 +85,7 @@ def load_style(path)
     end
 
     if style.has_title?
-    	title = style.title.to_s.downcase
+      title = style.title.to_s.downcase
       TITLES[title] << id unless TITLES_FILTER.include?(title)
     end
   rescue
@@ -67,14 +99,14 @@ end
 print "\nLoading dependent styles"
 
 Dependents = Hash[Dir[File.join(STYLE_ROOT, 'dependent', '*.csl')].each_with_index.map { |path, i|
-  print '.' if i % 100 == 0
+  print '.' if i % 120 == 0
   load_style(path)
 }]
 
 print "\nLoading independent styles"
 
 Independents = Hash[Dir[File.join(STYLE_ROOT, '*.csl')].each_with_index.map { |path, i|
-  print '.'  if i % 100 == 0
+  print '.'  if i % 120 == 0
   load_style(path)
 }]
 

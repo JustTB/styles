@@ -5,6 +5,7 @@
     <title-short>ABNT-IPEA</title-short>
     <id>http://www.zotero.org/styles/associacao-brasileira-de-normas-tecnicas-ipea</id>
     <link href="http://www.zotero.org/styles/associacao-brasileira-de-normas-tecnicas-ipea" rel="self"/>
+    <link href="https://forums.zotero.org/discussion/22148/how-to-apply-disambiguation-in-citation-just-when-works-of-different-authors-are-in-the-same-year/?Focus=147094#Comment_147094" rel="documentation"/>
     <author>
       <name>Juliana Geyna Régis</name>
       <email>juliana.regis@ipea.gov.br</email>
@@ -204,7 +205,7 @@ autores, exceto em arquivos do tipo 'artigo de jornal, artigo de revista, artigo
           <else-if type="entry-encyclopedia">
         </else-if>
           <else>
-            <text value="[S.l.] "/>
+            <text value="[s.l.] "/>
           </else>
         </choose>
         <choose>
@@ -218,7 +219,7 @@ autores, exceto em arquivos do tipo 'artigo de jornal, artigo de revista, artigo
         </choose>
       </if>
       <else>
-        <text value="[S.l: s.n.]"/>
+        <text value="[s.l: s.n.]"/>
       </else>
     </choose>
   </macro>
@@ -263,7 +264,7 @@ a ulitiliza em italico-->
         </group>
       </if>
       <else>
-        <text value="[S.d.]"/>
+        <text value="[s.d.]"/>
       </else>
     </choose>
   </macro>
@@ -276,7 +277,7 @@ a ulitiliza em italico-->
         </date>
       </if>
       <else>
-        <text value="[S.d.]"/>
+        <text value="[s.d.]"/>
       </else>
     </choose>
   </macro>
@@ -352,7 +353,7 @@ a ulitiliza em italico-->
   </macro>
   <!--Citacao-->
   <!--et al. aparece a partir de 04 autores-->
-  <citation et-al-min="4" et-al-use-first="1" et-al-subsequent-min="4" et-al-subsequent-use-first="1" collapse="year">
+  <citation et-al-min="4" et-al-use-first="1" et-al-subsequent-min="4" et-al-subsequent-use-first="1" disambiguate-add-year-suffix="true" disambiguate-add-names="true" disambiguate-add-givenname="true" collapse="year-suffix" givenname-disambiguation-rule="primary-name-with-initials">
     <sort>
       <key macro="author"/>
       <!--Puxa o autor primeiro-->
@@ -371,7 +372,7 @@ a ulitiliza em italico-->
   </citation>
   <!--Bibliografia-->
   <!--et al. aparece a partir de 04 autores-->
-  <bibliography hanging-indent="false" et-al-min="4" et-al-use-first="1" entry-spacing="0">
+  <bibliography hanging-indent="false" et-al-min="4" et-al-use-first="1" entry-spacing="0" subsequent-author-substitute="___." subsequent-author-substitute-rule="complete-all">
     <sort>
       <key macro="author"/>
       <!--Puxa o autor primeiro-->
@@ -574,7 +575,7 @@ a ulitiliza em italico-->
             <!--Local-->
             <text variable="publisher" suffix=", "/>
             <!--Editor-->
-            <text macro="issued" suffix=". (Nota técnica)."/>
+            <text macro="issued" prefix=", " suffix=". (Nota técnica)."/>
             <!--Data-->
           </group>
         </else-if>
